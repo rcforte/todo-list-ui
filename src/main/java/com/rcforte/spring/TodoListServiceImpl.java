@@ -1,5 +1,6 @@
 package com.rcforte.spring;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
+@Profile("default")
 public class TodoListServiceImpl implements TodoListService {
 
   private final RestTemplate restTemplate;
@@ -23,8 +25,7 @@ public class TodoListServiceImpl implements TodoListService {
       "http://localhost:8082/todos/api/v1/todo-list/",
       HttpMethod.GET,
       null,
-      new ParameterizedTypeReference<List<TodoList>>() {
-      }
+      new ParameterizedTypeReference<List<TodoList>>() {}
     );
     return resp.getBody();
   }

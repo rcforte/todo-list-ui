@@ -52,7 +52,7 @@ public class MainView extends VerticalLayout {
     grid.asSingleSelect().addValueChangeListener(e -> todoListForm.setTodoList(e.getValue()));
   }
 
-  public void updateList(){
+  public void updateList() {
     grid.setItems(service.findAll());
   }
 }
