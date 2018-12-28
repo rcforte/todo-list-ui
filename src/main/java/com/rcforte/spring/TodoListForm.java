@@ -14,7 +14,7 @@ public class TodoListForm extends FormLayout {
   private final TextField name = new TextField("Name");
   private final Button save = new Button("Save");
   private final Button cancel = new Button("Cancel");
-  private final Grid<String> grid = new Grid<>();
+  private final Grid<TodoListItem> grid = new Grid<>();
 
   private final TodoListService service;
   private final MainView mainView;
@@ -26,32 +26,45 @@ public class TodoListForm extends FormLayout {
     this.mainView = mainView;
     this.service = service;
 
-    // bind fields to object
-    binder.forField(id).withConverter(new StringToLongConverter("Use a number")).bind(TodoList::getId, TodoList::setId);
+    // set up binder
+    binder.forField(id)
+      .withConverter(new StringToLongConverter("Use a number"))
+      .bind(TodoList::getId, TodoList::setId);
     binder.forField(name).bind(TodoList::getName, TodoList::setName);
 
-    // set up buttons
+    // set up the fields
     id.setPlaceholder("Enter id...");
     name.setPlaceholder("Enter name");
+
+    // set up buttons
     save.getElement().setAttribute("theme", "primary");
-    HorizontalLayout buttons = new HorizontalLayout(save, cancel);
-
-    // set up fields
-    add(id, name, grid, buttons);
-
-    setTodoList(null);
     save.addClickListener(e -> save());
     cancel.addClickListener(evt -> setVisible(false));
+    HorizontalLayout buttons = new HorizontalLayout(save, cancel);
+
+    // add fields and buttons to form
+    add(id, name, grid, buttons);
+
+    // set up grid columns
+    grid.addColumn(TodoListItem::getId).setHeader("Id");
+    grid.addColumn(TodoListItem::getText).setHeader("Item");
+
+    // set up backing bean to null as we are creating an empty form
+    setTodoList(null);
   }
 
   public void setTodoList(TodoList todoList) {
     this.todoList = todoList;
     this.binder.setBean(todoList);
+
     boolean enabled = todoList != null;
     save.setEnabled(enabled);
-    grid.setItems(todoList.getItems());
     if(enabled) {
       name.focus();
+    }
+
+    if(todoList != null && todoList.getItems() != null) {
+      grid.setItems(todoList.getItems());
     }
   }
 

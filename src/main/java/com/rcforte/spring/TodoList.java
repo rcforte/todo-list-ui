@@ -13,7 +13,8 @@ import java.util.List;
 @EqualsAndHashCode
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class TodoList {
+
   private Long id;
   private String name;
-  private List<String> items = Lists.newArrayList();
+  private List<TodoListItem> items = Lists.newArrayList();
 }
