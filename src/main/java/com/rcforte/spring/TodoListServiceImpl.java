@@ -28,4 +28,14 @@ public class TodoListServiceImpl implements TodoListService {
     );
     return resp.getBody();
   }
+
+  @Override
+  public List<TodoList> findByName(String name) {
+    return findAll();
+  }
+
+  @Override
+  public TodoList save(TodoList todoList) {
+    return todoList;
+  }
 }
