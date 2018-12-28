@@ -43,17 +43,19 @@ public class TodoListServiceInMemory implements TodoListService {
 
   @Override
   public synchronized TodoList save(TodoList todoList) {
-    nextId++;
-    todoList.setId(nextId);
-
     // save items
     for(TodoListItem item : todoList.getItems()) {
-      if(item.getId() == null){
+      if(item.getId() == null) {
         item.setId(++nextId);
       }
     }
 
-    inMemoryDb.put(todoList.getId(), todoList);
+    // save todo list if needed
+    if(todoList.getId() == null) {
+      todoList.setId(++nextId);
+      inMemoryDb.put(todoList.getId(), todoList);
+    }
+
     return todoList;
   }
 }

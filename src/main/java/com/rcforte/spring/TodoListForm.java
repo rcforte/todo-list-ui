@@ -1,5 +1,6 @@
 package com.rcforte.spring;
 
+import com.google.common.collect.Lists;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
@@ -12,8 +13,9 @@ public class TodoListForm extends FormLayout {
 
   private final TextField id = new TextField("Id");
   private final TextField name = new TextField("Name");
+  private final TextField item = new TextField("Item");
+
   private final Button save = new Button("Save");
-  private final Button cancel = new Button("Cancel");
   private final Grid<TodoListItem> grid = new Grid<>();
 
   private final TodoListService service;
@@ -28,8 +30,9 @@ public class TodoListForm extends FormLayout {
 
     // set up binder
     binder.forField(id)
-      .withConverter(new StringToLongConverter("Use a number"))
-      .bind(TodoList::getId, TodoList::setId);
+        .withNullRepresentation("")
+        .withConverter(new StringToLongConverter("Use a number"))
+        .bind(TodoList::getId, TodoList::setId);
     binder.forField(name).bind(TodoList::getName, TodoList::setName);
 
     // set up the fields
@@ -39,11 +42,16 @@ public class TodoListForm extends FormLayout {
     // set up buttons
     save.getElement().setAttribute("theme", "primary");
     save.addClickListener(e -> save());
-    cancel.addClickListener(evt -> setVisible(false));
-    HorizontalLayout buttons = new HorizontalLayout(save, cancel);
+    HorizontalLayout buttons = new HorizontalLayout(save);
+
+    // seup todo list item
+    item.setPlaceholder("Enter item and press enter...");
+    item.getElement().addEventListener("keyup", evt -> {
+      addItem(evt.getEventData().getString("element.value"));
+    }).addEventData("element.value").setFilter("event.keyCode==13");
 
     // add fields and buttons to form
-    add(id, name, grid, buttons);
+    add(id, name, item, grid, buttons);
 
     // set up grid columns
     grid.addColumn(TodoListItem::getId).setHeader("Id");
@@ -53,18 +61,28 @@ public class TodoListForm extends FormLayout {
     setTodoList(null);
   }
 
+  public void addItem(String item) {
+    this.todoList.getItems().add(new TodoListItem(null, item));
+    this.grid.setItems(todoList.getItems());
+    this.item.clear();
+  }
+
   public void setTodoList(TodoList todoList) {
     this.todoList = todoList;
     this.binder.setBean(todoList);
 
-    boolean enabled = todoList != null;
+    boolean enabled = this.todoList != null;
     save.setEnabled(enabled);
     if(enabled) {
       name.focus();
     }
 
-    if(todoList != null && todoList.getItems() != null) {
-      grid.setItems(todoList.getItems());
+    if(todoList == null) {
+      grid.setItems(Lists.newArrayList());
+    } else {
+      if(todoList.getItems() != null) {
+        grid.setItems(todoList.getItems());
+      }
     }
   }
 
