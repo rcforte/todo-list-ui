@@ -2,8 +2,7 @@ package com.rcforte.spring;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -37,6 +36,10 @@ public class TodoListServiceImpl implements TodoListService {
 
   @Override
   public TodoList save(TodoList todoList) {
-    return todoList;
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<TodoList> entity = new HttpEntity<>(todoList, headers);
+    TodoList res = restTemplate.postForObject("http://localhost:8082/todos/api/v1/todo-list/", entity, TodoList.class);
+    return res;
   }
 }
