@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Profile("dev")
 @Service
 public class TodoListServiceInMemory implements TodoListService {
 
-  private static final Map<Long, TodoList> inMemoryDb = Maps.newHashMap();
-  private static long nextId;
+  private static final Map<String, TodoList> inMemoryDb = Maps.newHashMap();
 
   public TodoListServiceInMemory() {
     TodoList todo;
@@ -46,13 +46,13 @@ public class TodoListServiceInMemory implements TodoListService {
     // save items
     for(TodoListItem item : todoList.getItems()) {
       if(item.getId() == null) {
-        item.setId(++nextId);
+        item.setId(UUID.randomUUID().toString());
       }
     }
 
     // save todo list if needed
     if(todoList.getId() == null) {
-      todoList.setId(++nextId);
+      todoList.setId(UUID.randomUUID().toString());
       inMemoryDb.put(todoList.getId(), todoList);
     }
 

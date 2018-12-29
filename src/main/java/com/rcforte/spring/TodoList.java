@@ -14,7 +14,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class TodoList {
 
-  private Long id;
+  private String id;
   private String name;
   private List<TodoListItem> items = Lists.newArrayList();
 }

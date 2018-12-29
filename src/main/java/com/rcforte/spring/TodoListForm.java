@@ -31,7 +31,6 @@ public class TodoListForm extends FormLayout {
     // set up binder
     binder.forField(id)
         .withNullRepresentation("")
-        .withConverter(new StringToLongConverter("Use a number"))
         .bind(TodoList::getId, TodoList::setId);
     binder.forField(name).bind(TodoList::getName, TodoList::setName);
 

@@ -36,10 +36,9 @@ public class TodoListServiceImpl implements TodoListService {
 
   @Override
   public TodoList save(TodoList todoList) {
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    HttpEntity<TodoList> entity = new HttpEntity<>(todoList, headers);
-    TodoList res = restTemplate.postForObject("http://localhost:8082/todos/api/v1/todo-list/", entity, TodoList.class);
-    return res;
+    HttpHeaders hh = new HttpHeaders();
+    hh.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<TodoList> ent = new HttpEntity<>(todoList, hh);
+    return restTemplate.postForObject( "http://localhost:8082/todos/api/v1/todo-list/", ent, TodoList.class );
   }
 }

@@ -10,6 +10,15 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
+import org.dussan.vaadin.dcharts.DCharts;
+import org.dussan.vaadin.dcharts.base.elements.XYaxis;
+import org.dussan.vaadin.dcharts.data.DataSeries;
+import org.dussan.vaadin.dcharts.metadata.XYaxes;
+import org.dussan.vaadin.dcharts.metadata.renderers.LabelRenderers;
+import org.dussan.vaadin.dcharts.options.Axes;
+import org.dussan.vaadin.dcharts.options.AxesDefaults;
+import org.dussan.vaadin.dcharts.options.Options;
+import org.dussan.vaadin.dcharts.options.Title;
 
 @Route
 @PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base")
@@ -67,6 +76,33 @@ public class MainView extends VerticalLayout {
 
     setHeight("100vh");
     updateList();
+
+    // experiment with charts
+    /*
+    Title title = new Title("Plot with Options");
+    AxesDefaults axesDefaults = new AxesDefaults()
+        .setLabelRenderer(LabelRenderers.CANVAS);
+    Axes axes = new Axes()
+        .addAxis(
+            new XYaxis()
+              .setLabel("X Axis")
+            .setPad(0))
+        .addAxis(
+            new XYaxis(XYaxes.Y)
+            .setLabel("Y Axis"));
+
+    Options options = new Options()
+        .setAxesDefaults(axesDefaults)
+        .setAxes(axes);
+
+    DataSeries dataSeries = new DataSeries()
+        .add(3,7, 9, 1, 4, 6, 8, 2, 5);
+
+    DCharts chart = new DCharts()
+        .setDataSeries(dataSeries)
+        .setOptions(options)
+        .show();
+      */
   }
 
   public void updateList() {

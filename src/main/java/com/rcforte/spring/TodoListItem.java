@@ -12,6 +12,6 @@ import org.springframework.boot.convert.DataSizeUnit;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TodoListItem {
 
-  private Long id;
+  private String id;
   private String text;
 }
