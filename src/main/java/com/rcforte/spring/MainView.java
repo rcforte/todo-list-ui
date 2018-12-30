@@ -10,15 +10,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
-import org.dussan.vaadin.dcharts.DCharts;
-import org.dussan.vaadin.dcharts.base.elements.XYaxis;
-import org.dussan.vaadin.dcharts.data.DataSeries;
-import org.dussan.vaadin.dcharts.metadata.XYaxes;
-import org.dussan.vaadin.dcharts.metadata.renderers.LabelRenderers;
-import org.dussan.vaadin.dcharts.options.Axes;
-import org.dussan.vaadin.dcharts.options.AxesDefaults;
-import org.dussan.vaadin.dcharts.options.Options;
-import org.dussan.vaadin.dcharts.options.Title;
 
 @Route
 @PWA(name = "Project Base for Vaadin Flow with Spring", shortName = "Project Base")
