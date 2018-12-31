@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64381c92-13bc-412a-9ea3-93396b7c2831" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rcforte/spring/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rcforte/spring/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rcforte/spring/TodoListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rcforte/spring/TodoListServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="64381c92-13bc-412a-9ea3-93396b7c2831" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,16 +137,15 @@
       <workItem from="1546118069371" duration="1443000" />
       <workItem from="1546120714319" duration="636000" />
       <workItem from="1546121444431" duration="450000" />
-      <workItem from="1546199667374" duration="2602000" />
+      <workItem from="1546199667374" duration="2935000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33912000" />
+    <option name="totallyTimeSpent" value="34245000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="982" y="-1056" width="938" height="1056" extended-state="4" />
-    <editor active="true" />
+    <frame x="-938" y="24" width="938" height="1056" extended-state="4" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.26274943" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -159,7 +154,7 @@
       <window_info id="Web" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32975295" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32804233" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32804233" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39957717" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
